@@ -8,7 +8,9 @@ import {
   ListGroup,
   ListGroupItem,
   Form,
-  FormTextarea
+  FormTextarea,
+  FormInput,
+  Button
 } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
@@ -18,24 +20,48 @@ class StringToHexConvertor extends React.Component {
   state = {
     text: "",
     hexValue: "",
-    option: "1"
+    option: "1",
+    separator: ""
   };
+  getCurrentSeparator = o => {
+    const { option, separator } = this.state;
+    switch (o || option) {
+      case "1":
+        return "0x";
+      case "2":
+        return "%u";
+      case "3":
+        return "";
+      case "4":
+        return separator;
 
+      default:
+        break;
+    }
+  };
   handleTextInputChange = e => {
     this.setState({
       text: e.target.value,
-      hexValue: convertStringToHEX(e.target.value, this.state.option)
+      hexValue: convertStringToHEX(e.target.value, this.getCurrentSeparator())
+    });
+  };
+  handleSeparatorChange = e => {
+    const { text } = this.state;
+
+    this.setState({
+      separator: e.target.value,
+      hexValue: convertStringToHEX(text, e.target.value)
     });
   };
   handleOptionChange = o => {
     this.setState({
       option: o,
       text: this.state.text,
-      hexValue: convertStringToHEX(this.state.text, o)
+      hexValue: convertStringToHEX(this.state.text, this.getCurrentSeparator(o))
     });
   };
   render() {
-    const { text, hexValue, option } = this.state;
+    const { text, hexValue, option, separator } = this.state;
     return (
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
@@ -70,7 +96,7 @@ class StringToHexConvertor extends React.Component {
                             <label htmlFor="feDescription">Hex</label>
                             <FormTextarea
                               id="feDescription"
-                              placeholder="0x0021 0x2513 0x0020 0x20a2 0xfffd 0x006b 0x006b 0x006b 0x003f "
+                              placeholder="0x00210x25130x00200x20a20xfffd0x006b0x006b0x006b0x003f "
                               rows="5"
                               value={hexValue}
                               onChange={() => {}}
@@ -79,20 +105,53 @@ class StringToHexConvertor extends React.Component {
                         </Row>
                         <Row>
                           <Col className="mb-3 block-options" md="6">
+                            <h5>Separator</h5>
                             <FormRadio
                               name="option"
                               checked={option === "1"}
                               onChange={() => this.handleOptionChange("1")}
                             >
-                              0X padded
+                              0X
                             </FormRadio>
                             <FormRadio
                               name="option"
                               checked={option === "2"}
                               onChange={() => this.handleOptionChange("2")}
                             >
-                              Default
+                              %u
                             </FormRadio>
+                            <FormRadio
+                              name="option"
+                              checked={option === "3"}
+                              onChange={() => this.handleOptionChange("3")}
+                            >
+                              none
+                            </FormRadio>
+                            <FormRadio
+                              name="option"
+                              checked={option === "4"}
+                              onChange={() => this.handleOptionChange("4")}
+                            >
+                              custom
+                            </FormRadio>
+                          </Col>
+                          <Col md="6">
+                            {option === "4" ? (
+                              <div>
+                                <label htmlFor="customSeparator">
+                                  Custom Separator
+                                </label>
+
+                                <FormInput
+                                  id="customSeparator"
+                                  placeholder="separator(eg:%u)"
+                                  value={separator}
+                                  onChange={this.handleSeparatorChange}
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </Col>
                           <Col className="mb-3" />
                         </Row>
@@ -104,8 +163,15 @@ class StringToHexConvertor extends React.Component {
                   <strong className="text-muted d-block mb-2">
                     How it Works
                   </strong>
-                  <pre>
-                    <code className="javascript">{convertohexCode}</code>
+                  <pre className="code-part">
+                    <code className="javascript p-3">{convertohexCode}</code>
+                    {/* <button
+                      theme="white"
+                      className="copy-button"
+                      data-clipboard-text={convertohexCode}
+                    >
+                      <i className="material-icons">file_copy</i>
+                   </button>*/}
                   </pre>
                 </ListGroupItem>
               </ListGroup>

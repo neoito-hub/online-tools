@@ -2,3 +2,13 @@
   display: inline-block;
   margin-right: 10px;
 }
+.code-part {
+  position: relative;
+  border-radius: 5px;
+}
+.copy-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+}
