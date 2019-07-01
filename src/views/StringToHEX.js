@@ -9,8 +9,7 @@ import {
   ListGroupItem,
   Form,
   FormTextarea,
-  FormInput,
-  Button
+  FormInput
 } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
@@ -67,7 +66,7 @@ class StringToHexConvertor extends React.Component {
         <Row noGutters className="page-header py-4">
           <PageTitle
             title="String To Hex Convertor"
-            subtitle="Overview"
+            subtitle="Character to Unicode Binary "
             md="12"
             className="ml-sm-auto mr-sm-auto"
           />
@@ -173,6 +172,36 @@ class StringToHexConvertor extends React.Component {
                       <i className="material-icons">file_copy</i>
                    </button>*/}
                   </pre>
+                </ListGroupItem>
+                <ListGroupItem className="p-4">
+                  <strong className="text-muted d-block mb-2">
+                    About Unicode
+                  </strong>
+                  <p>
+                    Unicode serves as a standard for computers to display
+                    character data from any language. There are many variations
+                    of the Unicode standard, including UTF-7, UTF-8, UTF-16,
+                    UCS-2, as well as Big Endian / Little Endian byte order
+                    variations.
+                  </p>
+                  <p>
+                    Traditionally, the ASCII standard used 1 byte to store 1
+                    character, resulting in 256 combinations. Unlike the ASCII
+                    standard, Unicode character data utilizes multiple bytes per
+                    character. This increases the number of possible characters,
+                    and this may vary depending on what variation of the Unicode
+                    standard is in use.
+                  </p>
+                  <p>
+                    Unicode now replaces ASCII, ISO 8859 and EUC at all levels.
+                    It enables users to handle not only practically any script
+                    and language used on this planet, it also supports a
+                    comprehensive set of mathematical and technical symbols to
+                    simplify scientific information exchange.
+                    <a href="https://www.cl.cam.ac.uk/~mgk25/unicode.html">
+                      UTF-8 and Unicode FAQ for Unix/Linux
+                    </a>
+                  </p>
                 </ListGroupItem>
               </ListGroup>
             </Card>
