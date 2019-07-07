@@ -28,7 +28,11 @@ For the design library [Shards Dashboard Lite React
 <li>Make a copy of the string-to-hex.js</li>
 <li>The function that corresponds to the convertor is in the <code>/utils</code> directory.</li>
 <li>Add your awesome function.</li>
-<li><code>yarn</code></li>
-<li><code>yarn run dev</code></li>
-
+<li>To add your tool to the list in the side nav see the <code>/data/sidebar-nav-items.js</code> file and fill it with accordingly</li>
 </ol>
+
+### Now its time to deploy your feature
+
+ <li><code>yarn run deploy</code></li>
+
+Boom your feature will be live at [tools.neoito.com](https://tools.neoito.com)
