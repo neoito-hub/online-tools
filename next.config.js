@@ -13,5 +13,6 @@ module.exports = withCSS({
         query: { title: "String to hex" }
       }
     };
-  }
+  },
+  assetPrefix: process.env.NODE_ENV === "production" ? "/online-tools" : ""
 });

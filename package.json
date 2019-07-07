@@ -18,7 +18,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
+    "export": "next build  && next export",
+    "deploy": "next build && next export -o docs && git checkout -- docs/CNAME && git checkout -- docs/.nojekyll && git add docs && git commit -m \"chore: regen site\" && git push origin master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
