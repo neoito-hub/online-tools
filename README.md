@@ -7,13 +7,13 @@ For the design library [Shards Dashboard Lite React
 
 # Tools List
 
-<input type="checkbox" checked style=""> Hex to String<br>
-<input type="checkbox" checked style=""> String to Hex<br>
-<input type="checkbox" checked style=""> Morse Encoder<br>
-<input type="checkbox"  style=""> Jwt converter/ reverse decoder<br>
-<input type="checkbox"  style=""> SHA512 Converter<br>
-<input type="checkbox"  style=""> BCrypt creator<br>
-<input type="checkbox"  style=""> Image to gray scale image<br>
+<input type="checkbox" checked style=""/> Hex to String<br>
+<input type="checkbox" checked style=""/> String to Hex<br>
+<input type="checkbox" checked style=""/> Morse Encoder<br>
+<input type="checkbox"  style=""/> Jwt converter/ reverse decoder<br>
+<input type="checkbox"  style=""/> SHA512 Converter<br>
+<input type="checkbox"  style=""/> BCrypt creator<br>
+<input type="checkbox"  style=""/> Image to gray scale image<br>
 
 ...More
 
