@@ -11,6 +11,12 @@ export default function() {
       to: "/hex-to-string",
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: ""
+    },
+    {
+      title: "Morse Encoder",
+      to: "/string-to-morse",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: ""
     }
   ];
 }

@@ -9,6 +9,7 @@ For the design library [Shards Dashboard Lite React
 
 <input type="checkbox" checked style=""> Hex to String<br>
 <input type="checkbox" checked style=""> String to Hex<br>
+<input type="checkbox" checked style=""> Morse Encoder<br>
 ...More
 
 # Contribute guidelines
