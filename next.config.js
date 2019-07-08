@@ -11,6 +11,10 @@ module.exports = withCSS({
       "/string-to-hex": {
         page: "/string-to-hex",
         query: { title: "String to hex" }
+      },
+      "/string-to-morse": {
+        page: "/string-to-morse",
+        query: { title: "String to Morse encoder" }
       }
     };
   }
