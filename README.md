@@ -30,6 +30,7 @@ For the design library [Shards Dashboard Lite React
 <li>The function that corresponds to the convertor is in the <code>/utils</code> directory.</li>
 <li>Add your awesome function.</li>
 <li>To add your tool to the list in the side nav see the <code>/data/sidebar-nav-items.js</code> file and fill it with accordingly</li>
+<li>Add your link in the <code>next.config.js</code> file</li>
 </ol>
 
 ### Now its time to deploy your feature
