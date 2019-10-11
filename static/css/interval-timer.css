@@ -83,7 +83,7 @@
   -webkit-animation: crt-output 10ms infinite;
   animation: crt-output 10ms infinite;
   background-color: #031e11;
-  overflow: scroll;
+  overflow: hidden;
   position: absolute;
   padding: 3rem 2rem;
   pointer-events: auto;
@@ -240,4 +240,10 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   text-shadow: 0rem 0rem 1rem #0b0c0c;
   justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .controls {
+    width: auto;
+  }
 }
