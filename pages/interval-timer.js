@@ -1,6 +1,6 @@
 import Layout from "../components/layout/MainLayout";
 import React from "react";
-import { Container, Col, Card } from "shards-react";
+import { Container } from "shards-react";
 import "../static/css/interval-timer.css";
 
 function str_pad_left(string, pad, length) {
@@ -22,43 +22,60 @@ class IntervalTimer extends React.Component {
 
   state = init;
   timer;
+  triggerUpdateTime(target, breakTime) {
+    const { timeElapsed, workMode } = this.state;
+
+    const currenttype = workMode ? target : breakTime;
+    const minutes = ~~((currenttype - timeElapsed) / 60);
+    const seconds = (currenttype - timeElapsed) % 60;
+    const finalTime =
+      str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
+    if (!minutes && !seconds) {
+      this.setState({
+        timeElapsed: 0,
+        display: finalTime,
+        workMode: !workMode
+      });
+      if (workMode) {
+        // stop tune
+        this.startBreak.play();
+      } else {
+        this.endBreak.play();
+      }
+    } else {
+      this.setState({
+        timeElapsed: timeElapsed + 1,
+        display: finalTime,
+        running: true
+      });
+    }
+  }
   handleStartTimer = () => {
     if (this.timer) {
       clearInterval(this.timer);
     }
+    const { target, breakTime } = this.state;
+    this.triggerUpdateTime(target, breakTime);
     this.timer = setInterval(() => {
-      const { target, timeElapsed, workMode, breakTime } = this.state;
-      const currenttype = workMode ? target : breakTime;
-      const minutes = ~~((currenttype - timeElapsed) / 60);
-      const seconds = (currenttype - timeElapsed) % 60;
-      const finalTime =
-        str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
-      if (!minutes && !seconds) {
-        this.setState({
-          timeElapsed: 0,
-          display: finalTime,
-          workMode: !workMode
-        });
-        if (workMode) {
-          // stop tune
-          this.startBreak.play();
-        } else {
-          this.endBreak.play();
-        }
-      } else {
-        this.setState({
-          timeElapsed: timeElapsed + 1,
-          display: finalTime,
-          running: true
-        });
-      }
+      this.triggerUpdateTime(target, breakTime);
     }, 1000);
   };
   handleStopTimer = () => {
     if (this.timer) {
       clearInterval(this.timer);
     }
-    this.setState(init);
+    const { target, workMode, breakTime } = this.state;
+    const currenttype = workMode ? target : breakTime;
+    const minutes = ~~(currenttype / 60);
+    const seconds = currenttype % 60;
+    const finalTime =
+      str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
+    this.setState({
+      running: false,
+      timeElapsed: 0,
+      display: finalTime,
+      workMode: true
+    });
   };
   handleResumeTime = v => {
     this.setState({ breakTime: v.target.value * 60 });
@@ -67,7 +84,7 @@ class IntervalTimer extends React.Component {
     this.setState({ target: v.target.value * 60 });
   };
   render() {
-    const { display, running, target, breakTime } = this.state;
+    const { display, running, target, breakTime, workMode } = this.state;
 
     return (
       <Layout>
@@ -84,13 +101,20 @@ class IntervalTimer extends React.Component {
             <div className="piece glow noclick"></div>
           </div>
           <div className="controls">
+            <h2>
+              {running
+                ? workMode
+                  ? "I am in work mode"
+                  : "It's time for a break"
+                : null}
+            </h2>
             <p>
               I want to take a break after{" "}
               <input
                 type="number"
                 defaultValue={target / 60}
                 onChange={this.handleTargetTime}
-              ></input>{" "}
+              ></input>
               minutes for
               <input
                 type="number"
@@ -100,31 +124,30 @@ class IntervalTimer extends React.Component {
               minutes
             </p>
             {running ? (
-              <button onClick={this.handleStopTimer} className="-button">
+              <b onClick={this.handleStopTimer} className="play-button">
                 <i className="material-icons">stop</i>
-                Stop
-              </button>
+                <span>Stop</span>
+              </b>
             ) : (
-              <button onClick={this.handleStartTimer} className="play-button">
+              <b onClick={this.handleStartTimer} className="play-button">
                 <i className="material-icons">play_arrow</i>
-                Start
-              </button>
+                <span>Start</span>
+              </b>
             )}
           </div>
         </Container>
+        <p>
+          The cyber punk retro UI is inspired from{" "}
+          <a
+            href="https://codepen.io/somethingformed/pen/raWJXV"
+            target="_blank"
+          >
+            A PEN BY 未知天地 CLOSED
+          </a>
+        </p>
       </Layout>
     );
   }
 }
 
 export default IntervalTimer;
-
-// <Row noGutters className="page-header py-4">
-//   <PageTitle
-//     title="String To Hex Convertor"
-//     subtitle="Character to Unicode Binary "
-//     md="12"
-//     className="ml-sm-auto mr-sm-auto"
-//   />
-// </Row>
-// <Row>
