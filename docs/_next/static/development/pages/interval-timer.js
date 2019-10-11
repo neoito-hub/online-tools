@@ -42449,37 +42449,14 @@ function (_React$Component) {
         clearInterval(_this.timer);
       }
 
+      var _this$state = _this.state,
+          target = _this$state.target,
+          breakTime = _this$state.breakTime;
+
+      _this.triggerUpdateTime(target, breakTime);
+
       _this.timer = setInterval(function () {
-        var _this$state = _this.state,
-            target = _this$state.target,
-            timeElapsed = _this$state.timeElapsed,
-            workMode = _this$state.workMode,
-            breakTime = _this$state.breakTime;
-        var currenttype = workMode ? target : breakTime;
-        var minutes = ~~((currenttype - timeElapsed) / 60);
-        var seconds = (currenttype - timeElapsed) % 60;
-        var finalTime = str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
-
-        if (!minutes && !seconds) {
-          _this.setState({
-            timeElapsed: 0,
-            display: finalTime,
-            workMode: !workMode
-          });
-
-          if (workMode) {
-            // stop tune
-            _this.startBreak.play();
-          } else {
-            _this.endBreak.play();
-          }
-        } else {
-          _this.setState({
-            timeElapsed: timeElapsed + 1,
-            display: finalTime,
-            running: true
-          });
-        }
+        _this.triggerUpdateTime(target, breakTime);
       }, 1000);
     });
 
@@ -42488,7 +42465,21 @@ function (_React$Component) {
         clearInterval(_this.timer);
       }
 
-      _this.setState(init);
+      var _this$state2 = _this.state,
+          target = _this$state2.target,
+          workMode = _this$state2.workMode,
+          breakTime = _this$state2.breakTime;
+      var currenttype = workMode ? target : breakTime;
+      var minutes = ~~(currenttype / 60);
+      var seconds = currenttype % 60;
+      var finalTime = str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
+
+      _this.setState({
+        running: false,
+        timeElapsed: 0,
+        display: finalTime,
+        workMode: true
+      });
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "handleResumeTime", function (v) {
@@ -42513,17 +42504,50 @@ function (_React$Component) {
       this.endBreak = new Audio("../static/sounds/end-break.wav");
     }
   }, {
+    key: "triggerUpdateTime",
+    value: function triggerUpdateTime(target, breakTime) {
+      var _this$state3 = this.state,
+          timeElapsed = _this$state3.timeElapsed,
+          workMode = _this$state3.workMode;
+      var currenttype = workMode ? target : breakTime;
+      var minutes = ~~((currenttype - timeElapsed) / 60);
+      var seconds = (currenttype - timeElapsed) % 60;
+      var finalTime = str_pad_left(minutes, "0", 2) + ":" + str_pad_left(seconds, "0", 2);
+
+      if (!minutes && !seconds) {
+        this.setState({
+          timeElapsed: 0,
+          display: finalTime,
+          workMode: !workMode
+        });
+
+        if (workMode) {
+          // stop tune
+          this.startBreak.play();
+        } else {
+          this.endBreak.play();
+        }
+      } else {
+        this.setState({
+          timeElapsed: timeElapsed + 1,
+          display: finalTime,
+          running: true
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$state2 = this.state,
-          display = _this$state2.display,
-          running = _this$state2.running,
-          target = _this$state2.target,
-          breakTime = _this$state2.breakTime;
+      var _this$state4 = this.state,
+          display = _this$state4.display,
+          running = _this$state4.running,
+          target = _this$state4.target,
+          breakTime = _this$state4.breakTime,
+          workMode = _this$state4.workMode;
       return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_layout_MainLayout__WEBPACK_IMPORTED_MODULE_7__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 90
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(shards_react__WEBPACK_IMPORTED_MODULE_9__["Container"], {
@@ -42531,68 +42555,74 @@ function (_React$Component) {
         className: "main-content-container px-4 noisy",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 91
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "emblem",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 75
+          lineNumber: 92
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
         className: "icon-information",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76
+          lineNumber: 93
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "frame",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 95
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "piece output",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 96
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80
+          lineNumber: 97
         },
         __self: this
       }, display)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "piece scanlines noclick",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 100
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "piece glow noclick",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 101
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "controls",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 103
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h2", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 104
+        },
+        __self: this
+      }, running ? workMode ? "I am in work mode" : "It's time for a break" : null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 111
         },
         __self: this
       }, "I want to take a break after", " ", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -42601,64 +42631,82 @@ function (_React$Component) {
         onChange: this.handleTargetTime,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 113
         },
         __self: this
-      }), " ", "minutes for", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+      }), "minutes for", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
         type: "number",
         defaultValue: breakTime / 60,
         onChange: this.handleResumeTime,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 119
         },
         __self: this
-      }), " ", "minutes"), running ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+      }), " ", "minutes"), running ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("b", {
         onClick: this.handleStopTimer,
-        className: "-button",
+        className: "play-button",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103
+          lineNumber: 127
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
         className: "material-icons",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104
+          lineNumber: 128
         },
         __self: this
-      }, "stop"), "Stop") : react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+      }, "stop"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 129
+        },
+        __self: this
+      }, "Stop")) : react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("b", {
         onClick: this.handleStartTimer,
         className: "play-button",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 132
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
         className: "material-icons",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 133
         },
         __self: this
-      }, "play_arrow"), "Start"))));
+      }, "play_arrow"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 134
+        },
+        __self: this
+      }, "Start")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 139
+        },
+        __self: this
+      }, "The cyber punk retro UI is inspired from", " ", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
+        href: "https://codepen.io/somethingformed/pen/raWJXV",
+        target: "_blank",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 141
+        },
+        __self: this
+      }, "A PEN BY \u672A\u77E5\u5929\u5730 CLOSED")));
     }
   }]);
 
   return IntervalTimer;
 }(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (IntervalTimer); // <Row noGutters className="page-header py-4">
-//   <PageTitle
-//     title="String To Hex Convertor"
-//     subtitle="Character to Unicode Binary "
-//     md="12"
-//     className="ml-sm-auto mr-sm-auto"
-//   />
-// </Row>
-// <Row>
+/* harmony default export */ __webpack_exports__["default"] = (IntervalTimer);
 
 /***/ }),
 

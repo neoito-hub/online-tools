@@ -24,6 +24,13 @@
   text-transform: uppercase;
   font-family: "VT323";
 }
+.noisy h2 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #14fdce;
+  text-transform: uppercase;
+  font-family: "VT323";
+}
 .noisy p {
   margin-bottom: 2rem;
 }
@@ -143,11 +150,13 @@
     opacity: 0.2;
   }
 }
-h1::-moz-selection {
+h1::selection,
+h2::-moz-selection {
   background-color: #14fdce;
   color: #031e11;
 }
-h1::selection {
+h1::selection,
+h2::selection {
   background-color: #14fdce;
   color: #031e11;
 }
@@ -164,8 +173,10 @@ h1::selection {
   font-weight: normal;
   font-style: normal;
 }
-h1::-moz-selection [class^="icon-"],
-h1::-moz-selection [class*=" icon-"] {
+h1::selection,
+h2::-moz-selection [class^="icon-"],
+h1::selection,
+h2::-moz-selection [class*=" icon-"] {
   font-family: "uuxsl";
   speak: none;
   font-style: normal;
@@ -176,8 +187,10 @@ h1::-moz-selection [class*=" icon-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-h1::selection [class^="icon-"],
-h1::selection [class*=" icon-"] {
+h1::selection,
+h2::selection [class^="icon-"],
+h1::selection,
+h2::selection [class*=" icon-"] {
   font-family: "uuxsl";
   speak: none;
   font-style: normal;
@@ -188,10 +201,12 @@ h1::selection [class*=" icon-"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-h1::-moz-selection .icon-information:before {
+h1::selection,
+h2::-moz-selection .icon-information:before {
   content: "\e626";
 }
-h1::selection .icon-information:before {
+h1::selection,
+h2::selection .icon-information:before {
   content: "\e626";
 }
 .noisy {
@@ -220,4 +235,9 @@ input[type="number"]::-webkit-outer-spin-button {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+.play-button {
+  display: flex;
+  text-shadow: 0rem 0rem 1rem #0b0c0c;
+  justify-content: center;
 }
