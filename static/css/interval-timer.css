@@ -202,6 +202,7 @@ h1::selection .icon-information:before {
   position: absolute;
   top: 36%;
   padding: 4em 0;
+  width: 100%;
   text-align: center;
 }
 input[type="number"] {
