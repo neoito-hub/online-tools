@@ -17,6 +17,12 @@ export default function() {
       to: "/string-to-morse",
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: ""
+    },
+    {
+      title: "Timer To Take Break",
+      to: "/interval-timer",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: ""
     }
   ];
 }

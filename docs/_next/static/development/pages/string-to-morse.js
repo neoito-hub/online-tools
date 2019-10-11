@@ -1230,6 +1230,11 @@ __webpack_require__.r(__webpack_exports__);
     to: "/string-to-morse",
     htmlBefore: '<i class="material-icons">view_module</i>',
     htmlAfter: ""
+  }, {
+    title: "Timer To Take Break",
+    to: "/interval-timer",
+    htmlBefore: '<i class="material-icons">view_module</i>',
+    htmlAfter: ""
   }];
 });
 
@@ -43371,7 +43376,7 @@ var MORSE_MAP = {
 
 /***/ }),
 
-/***/ 6:
+/***/ 1:
 /*!***************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fstring-to-morse&absolutePagePath=%2FUsers%2Fmac%2FDocuments%2Fnext-apps%2Fpages%2Fstring-to-morse.js ***!
   \***************************************************************************************************************************************************/
@@ -43394,5 +43399,5 @@ module.exports = dll_7aff549c98b978433226;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js","styles"]]]);
+},[[1,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=string-to-morse.js.map

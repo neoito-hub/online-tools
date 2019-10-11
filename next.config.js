@@ -15,6 +15,10 @@ module.exports = withCSS({
       "/string-to-morse": {
         page: "/string-to-morse",
         query: { title: "String to Morse encoder" }
+      },
+      "/interval-timer": {
+        page: "/interval-timer",
+        query: { title: "A Timer to take a break" }
       }
     };
   }
