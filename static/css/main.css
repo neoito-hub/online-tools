@@ -12,3 +12,6 @@
   top: 0;
   margin: 10px;
 }
+body {
+  overflow: scroll;
+}
