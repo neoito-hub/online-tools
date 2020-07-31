@@ -49,3 +49,9 @@ For the design library [Shards Dashboard Lite React
  <li><code>yarn run deploy</code></li>
 
 Boom your feature will be live at [tools.neoito.com](https://tools.neoito.com)
+
+## Found a bug
+
+Report an issue with helpful info.
+
+Thanks.
