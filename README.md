@@ -25,6 +25,7 @@ For the design library [Shards Dashboard Lite React
 ### Start the project
 
 <ol>
+<li>Fork this repo</li>
 <li>Clone this repo</li>
 <li><code>yarn</code></li>
 <li><code>yarn run dev</code></li>
@@ -39,6 +40,8 @@ For the design library [Shards Dashboard Lite React
 <li>Add your awesome function.</li>
 <li>To add your tool to the list in the side nav see the <code>/data/sidebar-nav-items.js</code> file and fill it with accordingly</li>
 <li>Add your link in the <code>next.config.js</code> file</li>
+<li>Send a PR</li>
+
 </ol>
 
 ### Now its time to deploy your feature
