@@ -23,6 +23,12 @@ export default function() {
       to: "/interval-timer",
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: ""
+    },
+    {
+      title: "Deep Clean Object",
+      to: "/deep-clean-object",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: ""
     }
   ];
 }
