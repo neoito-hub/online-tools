@@ -117,6 +117,9 @@ hue-6-2: #e6c07b
   top: 0;
   margin: 10px;
 }
+body {
+  overflow: scroll;
+}
 
 @font-face {
   font-family: "VT323";

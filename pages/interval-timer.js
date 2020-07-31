@@ -12,7 +12,7 @@ const init = {
   target: 10 * 60, // mins* seconds
   breakTime: 2 * 60, // mins* seconds
   workMode: true,
-  running: false
+  running: false,
 };
 class IntervalTimer extends React.Component {
   componentDidMount() {
@@ -34,7 +34,7 @@ class IntervalTimer extends React.Component {
       this.setState({
         timeElapsed: 0,
         display: finalTime,
-        workMode: !workMode
+        workMode: !workMode,
       });
       if (workMode) {
         // stop tune
@@ -46,7 +46,7 @@ class IntervalTimer extends React.Component {
       this.setState({
         timeElapsed: timeElapsed + 1,
         display: finalTime,
-        running: true
+        running: true,
       });
     }
   }
@@ -74,13 +74,13 @@ class IntervalTimer extends React.Component {
       running: false,
       timeElapsed: 0,
       display: finalTime,
-      workMode: true
+      workMode: true,
     });
   };
-  handleResumeTime = v => {
+  handleResumeTime = (v) => {
     this.setState({ breakTime: v.target.value * 60 });
   };
-  handleTargetTime = v => {
+  handleTargetTime = (v) => {
     this.setState({ target: v.target.value * 60 });
   };
   render() {
@@ -149,5 +149,9 @@ class IntervalTimer extends React.Component {
     );
   }
 }
+
+IntervalTimer.getInitialProps = () => {
+  return {};
+};
 
 export default IntervalTimer;

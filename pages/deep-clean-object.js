@@ -10,11 +10,14 @@ import {
 } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import Layout from "../components/layout/MainLayout";
-import JSONInput from 'react-json-editor-ajrm';
-import locale from 'react-json-editor-ajrm/locale/en';
-import { deepCleanObject, deepCleanObjectCode as code } from '../utils/deepCleanObject'
+import JSONInput from "react-json-editor-ajrm";
+import locale from "react-json-editor-ajrm/locale/en";
+import {
+  deepCleanObject,
+  deepCleanObjectCode as code,
+} from "../utils/deepCleanObject";
 
-export default class DeepCleanObject extends Component {
+class DeepCleanObject extends Component {
   state = {
     input: {
       info: 'Delete this and paste your object here..',
@@ -47,20 +50,21 @@ export default class DeepCleanObject extends Component {
   }
 
   componentDidMount() {
-    this.setState(({input}) => ({
-      output: deepCleanObject(input)
-    }))
+    this.setState(({ input }) => ({
+      output: deepCleanObject(input),
+    }));
   }
 
   handleInputChange = ({ error, jsObject }) => {
-    !error && this.setState((prevState) => ({
-      output: jsObject ? deepCleanObject(jsObject) : prevState.output
-    }))
-  }
+    !error &&
+      this.setState((prevState) => ({
+        output: jsObject ? deepCleanObject(jsObject) : prevState.output,
+      }));
+  };
 
   render() {
-    const {input, output} = this.state
-    
+    const { input, output } = this.state;
+
     return (
       <Layout>
         <Container fluid className="main-content-container px-4">
@@ -85,7 +89,7 @@ export default class DeepCleanObject extends Component {
                             <Col md="6" className="form-group p-3">
                               <label htmlFor="feDescription">Input</label>
                               <JSONInput
-                                id='a_unique_id'
+                                id="a_unique_id"
                                 placeholder={input}
                                 onChange={this.handleInputChange}
                                 locale={locale}
@@ -96,7 +100,7 @@ export default class DeepCleanObject extends Component {
                             <Col md="6" className="form-group p-3">
                               <label htmlFor="feDescription">Output</label>
                               <JSONInput
-                                id='a_unique_id'
+                                id="a_unique_id"
                                 placeholder={output}
                                 viewOnly
                                 locale={locale}
@@ -138,3 +142,9 @@ export default class DeepCleanObject extends Component {
     );
   }
 }
+
+DeepCleanObject.getInitialProps = () => {
+  return {};
+};
+
+export default DeepCleanObject;

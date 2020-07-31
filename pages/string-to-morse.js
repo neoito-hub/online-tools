@@ -9,13 +9,13 @@ import {
   ListGroupItem,
   Form,
   FormTextarea,
-  FormInput
+  FormInput,
 } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import {
   StringToMorse as fn,
   StringToMorseCode as code,
-  IMC_LIST
+  IMC_LIST,
 } from "../utils/stringToMorse";
 import Layout from "../components/layout/MainLayout";
 import ListMap from "../components/common/ListMap";
@@ -24,13 +24,13 @@ class StringToMorseConvertor extends React.Component {
   IMC = IMC_LIST();
   state = {
     input: "",
-    output: ""
+    output: "",
   };
 
-  handleTextInputChange = e => {
+  handleTextInputChange = (e) => {
     this.setState({
       input: e.target.value,
-      output: fn(e.target.value)
+      output: fn(e.target.value),
     });
   };
   render() {
@@ -187,5 +187,9 @@ class StringToMorseConvertor extends React.Component {
     );
   }
 }
+
+StringToMorseConvertor.getInitialProps = () => {
+  return {};
+};
 
 export default StringToMorseConvertor;
