@@ -9,12 +9,12 @@ import {
   ListGroupItem,
   Form,
   FormTextarea,
-  FormInput
+  FormInput,
 } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import {
   convertHexToString as fn,
-  convertoStringCode as code
+  convertoStringCode as code,
 } from "../utils/hexToString";
 import Layout from "../components/layout/MainLayout";
 
@@ -23,10 +23,10 @@ class HexToStringConvertor extends React.Component {
     input: "",
     output: "",
     option: "1",
-    separator: ""
+    separator: "",
   };
 
-  getCurrentSeparator = o => {
+  getCurrentSeparator = (o) => {
     const { option, separator } = this.state;
     switch (o || option) {
       case "1":
@@ -42,25 +42,25 @@ class HexToStringConvertor extends React.Component {
         break;
     }
   };
-  handleTextInputChange = e => {
+  handleTextInputChange = (e) => {
     this.setState({
       input: e.target.value,
-      output: fn(e.target.value, this.getCurrentSeparator())
+      output: fn(e.target.value, this.getCurrentSeparator()),
     });
   };
-  handleSeparatorChange = e => {
+  handleSeparatorChange = (e) => {
     const { input } = this.state;
 
     this.setState({
       separator: e.target.value,
-      output: fn(input, e.target.value)
+      output: fn(input, e.target.value),
     });
   };
-  handleOptionChange = o => {
+  handleOptionChange = (o) => {
     this.setState({
       option: o,
       input: this.state.input,
-      output: fn(this.state.input, this.getCurrentSeparator(o))
+      output: fn(this.state.input, this.getCurrentSeparator(o)),
     });
   };
   render() {
@@ -217,5 +217,9 @@ class HexToStringConvertor extends React.Component {
     );
   }
 }
+
+HexToStringConvertor.getInitialProps = () => {
+  return {};
+};
 
 export default HexToStringConvertor;
