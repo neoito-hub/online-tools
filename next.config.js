@@ -19,6 +19,10 @@ module.exports = withCSS({
       "/interval-timer": {
         page: "/interval-timer",
         query: { title: "A Timer to take a break" }
+      },
+      "/deep-clean-object": {
+        page: "/deep-clean-object",
+        query: { title: "Deep Clean Object" }
       }
     };
   }
