@@ -1,5 +1,5 @@
 /**
- *
+ * Clean any Object
  * @param {Object} obj
  */
 export function deepCleanObject(obj) {
@@ -20,7 +20,7 @@ export function deepCleanObject(obj) {
 // build output will uglify the above code so making it a string
 export const deepCleanObjectCode = `
 /**
- *
+ * Clean any Object
  * @param {Object} obj
  */
 function deepCleanObject(obj) {
