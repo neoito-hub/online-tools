@@ -93,6 +93,18 @@ class DeepCleanObject extends Component {
                       <code className="javascript p-3">{code}</code>
                     </pre>
                   </ListGroupItem>
+                  <ListGroupItem className="p-4">
+                    <strong className="text-muted d-block mb-2">
+                      About Deep Clean Object
+                    </strong>
+                    <p>
+                      Ever had a situation where you had to clear only the values of an object while
+                      keeping all the keys of the object?
+                    </p>
+                    <p>
+                      Deep clean object can do just that. No matter how deep the object is!
+                    </p>
+                  </ListGroupItem>
                 </ListGroup>
               </Card>
             </Col>
