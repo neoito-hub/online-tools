@@ -1,40 +1,62 @@
 /**
- * Clean any Object
+ * Clear only the values of an object while keeping all the keys of the object
+ *
  * @param {Object} obj
+ * @returns {Object} Returns after clearing all the values of the object
+ * @example
+ *
+ * deepCleanObject({ a: 'something', b: [{ id: '1001', type: 'Regular' }] })
+ * // => { a: '', b: [{ id: '', type: ''}] }
+ *
+ * deepCleanObject("something")
+ * // => "something"
+ *
+ * deepCleanObject(1)
+ * // => 1
  */
 export function deepCleanObject(obj) {
-  Object.keys(obj).forEach((key) => {
+  obj && typeof obj === 'object' &&  Object.keys(obj).forEach((key) => {
     if (Array.isArray(obj[key])) {
-      // If value is an array, loop through all the items and call the function recursively
-      obj[key].forEach(item => deepCleanObject(item))
-    } else if (obj[key] instanceof Object) {
-      // If value is an Object, call the function recursively
-      deepCleanObject(obj[key]);
+      obj[key].forEach((item) => deepCleanObject(item))
+    } else if (typeof obj[key] !== 'function' && obj[key] instanceof Object) {
+      deepCleanObject(obj[key])
     } else {
-      obj[key] = "";
+      obj[key] = ''
     }
-  });
-  return obj;
+  })
+
+  return obj
 }
 
 // build output will uglify the above code so making it a string
 export const deepCleanObjectCode = `
 /**
- * Clean any Object
+ * Clear only the values of an object while keeping all the keys of the object
+ *
  * @param {Object} obj
+ * @returns {Object} Returns after clearing all the values of the object
+ * @example
+ *
+ * deepCleanObject({ a: 'something', b: [{ id: '1001', type: 'Regular' }] })
+ * // => { a: '', b: [{ id: '', type: ''}] }
+ *
+ * deepCleanObject("something")
+ * // => "something"
+ *
+ * deepCleanObject(1)
+ * // => 1
  */
-function deepCleanObject(obj) {
-  Object.keys(obj).forEach((key) => {
+export function deepCleanObject(obj) {
+  obj && typeof obj === 'object' &&  Object.keys(obj).forEach((key) => {
     if (Array.isArray(obj[key])) {
-      // If value is an array, loop through all the items and call the function recursively
-      obj[key].forEach(item => deepCleanObject(item))
-    } else if (obj[key] instanceof Object) {
-      // If value is an Object, call the function recursively
-      deepCleanObject(obj[key]);
+      obj[key].forEach((item) => deepCleanObject(item))
+    } else if (typeof obj[key] !== 'function' && obj[key] instanceof Object) {
+      deepCleanObject(obj[key])
     } else {
-      obj[key] = "";
+      obj[key] = ''
     }
-  });
-  return obj;
+  })
+
+  return obj
 }
 `;
