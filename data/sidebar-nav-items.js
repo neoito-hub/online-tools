@@ -7,12 +7,6 @@ export default function () {
       htmlAfter: "",
     },
     {
-      title: "Polygon Vertex",
-      to: "/polygon-vertex",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      htmlAfter: "",
-    },
-    {
       title: "Hex To Text",
       to: "/hex-to-string",
       htmlBefore: '<i class="material-icons">view_module</i>',
@@ -33,6 +27,12 @@ export default function () {
     {
       title: "Deep Clean Object",
       to: "/deep-clean-object",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: "",
+    },
+    {
+      title: "Polygon Vertex",
+      to: "/polygon-vertex",
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: "",
     },
