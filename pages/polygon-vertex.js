@@ -187,45 +187,45 @@ class StringToHexConvertor extends React.Component {
                               <Row>
                                 <Col>
                                   <Card small className="mb-4">
-                                    <CardHeader className="border-bottom">
-                                      <h6 className="m-0">
-                                        {/* <Button
-                                          outline
-                                          theme="primary"
-                                          className="mb-2 mr-1"
-                                        >
-                                          Clear
-                                        </Button> */}
-                                      </h6>
-                                    </CardHeader>
-                                    <CardBody className="p-0 pb-3">
-                                      <table className="table mb-0">
-                                        <thead className="bg-light">
-                                          <tr>
-                                            <th
-                                              scope="col"
-                                              className="border-0"
-                                            >
-                                              X-axis
-                                            </th>
-                                            <th
-                                              scope="col"
-                                              className="border-0"
-                                            >
-                                              Y-axis
-                                            </th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          {this.state.vertex.map((item) => (
+                                    {this.state.vertex.length > 0 ? (
+                                      <CardBody className="p-0 pb-3">
+                                        {/* <h6 className="m-0">
+                                          <Button
+                                            outline
+                                            theme="primary"
+                                            className="mb-2 mr-1"
+                                          >
+                                            Clear
+                                          </Button>
+                                        </h6> */}
+                                        <table className="table mb-0">
+                                          <thead className="bg-light">
                                             <tr>
-                                              <td>{item.x}</td>
-                                              <td>{item.y}</td>
+                                              <th
+                                                scope="col"
+                                                className="border-0"
+                                              >
+                                                X-axis
+                                              </th>
+                                              <th
+                                                scope="col"
+                                                className="border-0"
+                                              >
+                                                Y-axis
+                                              </th>
                                             </tr>
-                                          ))}
-                                        </tbody>
-                                      </table>
-                                    </CardBody>
+                                          </thead>
+                                          <tbody>
+                                            {this.state.vertex.map((item) => (
+                                              <tr>
+                                                <td>{item.x}</td>
+                                                <td>{item.y}</td>
+                                              </tr>
+                                            ))}
+                                          </tbody>
+                                        </table>
+                                      </CardBody>
+                                    ) : null}
                                   </Card>
                                 </Col>
                               </Row>
