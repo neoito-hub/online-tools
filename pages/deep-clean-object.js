@@ -19,9 +19,35 @@ import {
 
 class DeepCleanObject extends Component {
   state = {
-    input: { sample: "Delete this and enter your object here" },
-    output: null,
-  };
+    input: {
+      info: 'Delete this and paste your object here..',
+      accounting: [
+        {
+          firstName: "John",
+          lastName: "Doe",
+          age: 23
+        },
+        {
+          firstName: "Mary",
+          lastName: "Smith",
+          age: 32
+        }
+      ],
+      sales: [
+        {
+          firstName: "Sally",
+          lastName: "Green",
+          age: 27
+        },
+        {
+          firstName: "Jim",
+          lastName: "Galley",
+          age: 41
+        }
+      ]
+    },
+    output: null
+  }
 
   componentDidMount() {
     this.setState(({ input }) => ({
@@ -58,26 +84,28 @@ class DeepCleanObject extends Component {
                     <Row>
                       <Col>
                         <Form>
-                          <Row form style={{ marginLeft: 0 }}>
+                          <Row form>
                             {/* Description */}
-                            <Col md="6" className="form-group">
+                            <Col md="6" className="form-group p-3">
                               <label htmlFor="feDescription">Input</label>
                               <JSONInput
                                 id="a_unique_id"
                                 placeholder={input}
                                 onChange={this.handleInputChange}
                                 locale={locale}
-                                height="300px"
+                                height='300px'
+                                width='100%'
                               />
                             </Col>
-                            <Col md="6" className="form-group">
+                            <Col md="6" className="form-group p-3">
                               <label htmlFor="feDescription">Output</label>
                               <JSONInput
                                 id="a_unique_id"
                                 placeholder={output}
                                 viewOnly
                                 locale={locale}
-                                height="300px"
+                                height='300px'
+                                width='100%'
                               />
                             </Col>
                           </Row>
@@ -98,7 +126,7 @@ class DeepCleanObject extends Component {
                       About Deep Clean Object
                     </strong>
                     <p>
-                      Ever had a situation where you had to clear only the values of an object while
+                      Ever had a scenario where you had to clear only the values of an object while
                       keeping all the keys of the object?
                     </p>
                     <p>
