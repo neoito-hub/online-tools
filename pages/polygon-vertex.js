@@ -68,7 +68,7 @@ class StringToHexConvertor extends React.Component {
           round: this.state.round,
         }),
       });
-    } else {
+    } else if (e.target.value && e.target.value >= 0) {
       alert("Number of sides must be a number greater than 2");
     }
   };
@@ -311,5 +311,9 @@ class StringToHexConvertor extends React.Component {
     );
   }
 }
+
+StringToHexConvertor.getInitialProps = () => {
+  return {};
+};
 
 export default StringToHexConvertor;
