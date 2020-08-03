@@ -12,6 +12,10 @@ module.exports = withCSS({
         page: "/polygon-vertex",
         query: { title: "Polygon vertex calculator" },
       },
+      "/password-checker": {
+        page: "/password-checker",
+        query: { title: "Password Checker" },
+      },
       "/string-to-hex": {
         page: "/string-to-hex",
         query: { title: "String to hex" },
