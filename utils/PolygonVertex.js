@@ -10,10 +10,6 @@ export function polygon(input) {
   var centerAng = (2 * Math.PI) / n;
 
   startAng = (Math.PI * input.a) / 180;
-  if (isNaN(startAng)) {
-    alert("Starting angle must be a number");
-    return;
-  }
 
   function isOdd(n) {
     return n % 2 == 1;
@@ -53,10 +49,6 @@ export function polygon(input) {
   var centerAng = (2 * Math.PI) / n;
 
   startAng = (Math.PI * input.a) / 180;
-  if (isNaN(startAng)) {
-    alert("Starting angle must be a number");
-    return;
-  }
 
   function isOdd(n) {
     return n % 2 == 1;

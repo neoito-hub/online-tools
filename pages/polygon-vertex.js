@@ -30,26 +30,27 @@ class StringToHexConvertor extends React.Component {
   handleTextInputChangex = (e) => {
     this.setState({
       centerx: e.target.value,
-      //   vertex: polygon({
-      //     r: this.state.radius,
-      //     a: this.state.a,
-      //     n: this.state.number,
-      //     cy: this.state.centery,
-      //     round: this.state.round,
-      //   }),
+      vertex: polygon({
+        r: this.state.radius,
+        a: this.state.angle,
+        cx: e.target.value,
+        cy: this.state.centery,
+        round: this.state.round,
+        n: this.state.number,
+      }),
     });
   };
   handleTextInputChangey = (e) => {
     this.setState({
       centery: e.target.value,
-      //   vertex: polygon({
-      //     cy: e.target.value,
-      //     r: this.state.radius,
-      //     a: this.state.angle,
-      //     cx: this.state.centerx,
-      //     n: this.state.centery,
-      //     round: this.state.round,
-      //   }),
+      vertex: polygon({
+        r: this.state.radius,
+        a: this.state.angle,
+        cy: e.target.value,
+        cx: this.state.centerx,
+        round: this.state.round,
+        n: this.state.number,
+      }),
     });
   };
   handleTextInputChangeside = (e) => {
