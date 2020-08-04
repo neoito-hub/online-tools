@@ -36,5 +36,11 @@ export default function () {
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: "",
     },
+    {
+      title: "Password checker",
+      to: "/password-checker",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: "",
+    },
   ];
 }

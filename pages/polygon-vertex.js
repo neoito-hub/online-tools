@@ -1,5 +1,6 @@
 import Layout from "../components/layout/MainLayout";
-import React from "react";
+import React, { Suspense } from "react";
+import CanvasComponent from "./CanvasComponent";
 import {
   Container,
   Row,
@@ -9,31 +10,31 @@ import {
   ListGroupItem,
   Form,
   FormInput,
-  Button,
-  CardHeader,
   CardBody,
+  FormFeedback,
 } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import { polygon, polygoncode } from "../utils/PolygonVertex";
 
 class StringToHexConvertor extends React.Component {
   state = {
-    centerx: 0,
-    centery: 0,
-    number: 4,
-    radius: 50,
+    centerx: 100,
+    centery: 100,
+    number: 5,
+    radius: 70,
     angle: 0,
     vertex: [],
-    visibile: "none",
+    validity: true,
+    key: 0,
   };
 
   componentDidMount() {
     this.setState({
       vertex: polygon({
-        cx: 0,
-        cy: 0,
-        n: 4,
-        r: 50,
+        cx: 100,
+        cy: 100,
+        n: 5,
+        r: 70,
         a: 0,
       }),
     });
@@ -52,6 +53,7 @@ class StringToHexConvertor extends React.Component {
       }),
     });
   };
+
   handleTextInputChangey = (e) => {
     this.setState({
       centery: e.target.value,
@@ -81,7 +83,7 @@ class StringToHexConvertor extends React.Component {
         }),
       });
     } else if (e.target.value && e.target.value >= 0) {
-      alert("Number of sides must be a number greater than 2");
+      // alert("Number of sides must be a number greater than 2");
     }
   };
   clear = (e) => {
@@ -104,11 +106,6 @@ class StringToHexConvertor extends React.Component {
           round: this.state.round,
         }),
       });
-    } else {
-      this.setState({
-        radius,
-      });
-      alert("Radius  must be greater than zero");
     }
   };
 
@@ -126,8 +123,10 @@ class StringToHexConvertor extends React.Component {
     });
   };
 
+  handleCleanCanva = () => this.canva.cleanCanvas();
+
   render() {
-    const { centerx, centery, angle, number } = this.state;
+    const { centerx, centery, radius, number, angle, validity } = this.state;
     return (
       <Layout>
         <Container fluid className="main-content-container px-4">
@@ -157,34 +156,54 @@ class StringToHexConvertor extends React.Component {
                                   onChange={this.handleTextInputChangex}
                                   placeholder="X-axis"
                                   className="mb-2"
+                                  required
+                                  valid
                                 />
+                                <FormFeedback>Cannot be empty</FormFeedback>
                               </Col>
                               <Col md="8" className="form-group">
                                 <label htmlFor="y">Center Y</label>
                                 <FormInput
                                   id="y"
+                                  value={centery}
                                   onChange={this.handleTextInputChangey}
                                   placeholder="Y-axis"
                                   className="mb-2"
+                                  required
+                                  valid
                                 />
+                                <FormFeedback>Cannot be empty</FormFeedback>
                               </Col>
                               <Col md="8" className="form-group">
                                 <label htmlFor="vertex">Number of sides</label>
                                 <FormInput
+                                  value={number}
                                   id="vertex"
                                   onChange={this.handleTextInputChangeside}
                                   placeholder="Number of side's"
                                   className="mb-2"
+                                  required
+                                  valid
                                 />
+                                <FormFeedback>
+                                  Number of sides must be a number greater than
+                                  2
+                                </FormFeedback>
                               </Col>
                               <Col md="8" className="form-group">
                                 <label htmlFor="radius">Radius</label>
                                 <FormInput
                                   id="radius"
+                                  value={radius}
                                   onChange={this.handleTextInputChangeradius}
                                   placeholder="Radius"
                                   className="mb-2"
+                                  required
+                                  valid
                                 />
+                                <FormFeedback>
+                                  Radius must be greater than zero"
+                                </FormFeedback>
                               </Col>
                               <Col md="8" className="form-group">
                                 <label htmlFor="angle">
@@ -192,11 +211,14 @@ class StringToHexConvertor extends React.Component {
                                 </label>
                                 <FormInput
                                   id="angle"
+                                  value={angle}
                                   onChange={
                                     this.handleTextInputChangestartangle
                                   }
                                   placeholder="Angle in Degree"
                                   className="mb-2"
+                                  required
+                                  valid
                                 />
                               </Col>
                             </Col>
@@ -244,6 +266,10 @@ class StringToHexConvertor extends React.Component {
                                       </CardBody>
                                     ) : null}
                                   </Card>
+                                  <CanvasComponent
+                                    key={this.state.vertex}
+                                    vertex={this.state.vertex}
+                                  />
                                 </Col>
                               </Row>
                             </Col>
