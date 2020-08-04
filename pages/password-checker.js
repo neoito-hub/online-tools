@@ -74,7 +74,7 @@ class StringToHexConvertor extends React.Component {
                                     <b>Your password strength is</b>
                                   </CardHeader>
                                   <CardBody className="pb-3">
-                                    {this.state.strength} :{this.state.score}
+                                    {this.state.strength} {this.state.score}
                                   </CardBody>
                                 </Card>
                               </Col>
@@ -117,5 +117,9 @@ class StringToHexConvertor extends React.Component {
     );
   }
 }
+
+StringToHexConvertor.getInitialProps = () => {
+  return {};
+};
 
 export default StringToHexConvertor;

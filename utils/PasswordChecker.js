@@ -28,9 +28,9 @@ export function passwordCheck(pass) {
 
 export function checkPassStrength(pass) {
   var score = passwordCheck(pass);
-  if (score > 80) return "strong";
-  if (score > 60) return "good";
-  if (score >= 30) return "weak";
+  if (score > 80) return "Strong : ";
+  if (score > 60) return "Good : ";
+  if (score >= 30) return "Weak : ";
   return "";
 }
 
