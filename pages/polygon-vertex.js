@@ -127,7 +127,7 @@ class StringToHexConvertor extends React.Component {
   };
 
   render() {
-    const { centerx, centery, angle, number } = this.state;
+    const { centerx, centery, radius, number, angle } = this.state;
     return (
       <Layout>
         <Container fluid className="main-content-container px-4">
@@ -163,6 +163,7 @@ class StringToHexConvertor extends React.Component {
                                 <label htmlFor="y">Center Y</label>
                                 <FormInput
                                   id="y"
+                                  value={centery}
                                   onChange={this.handleTextInputChangey}
                                   placeholder="Y-axis"
                                   className="mb-2"
@@ -171,6 +172,7 @@ class StringToHexConvertor extends React.Component {
                               <Col md="8" className="form-group">
                                 <label htmlFor="vertex">Number of sides</label>
                                 <FormInput
+                                  value={number}
                                   id="vertex"
                                   onChange={this.handleTextInputChangeside}
                                   placeholder="Number of side's"
@@ -181,6 +183,7 @@ class StringToHexConvertor extends React.Component {
                                 <label htmlFor="radius">Radius</label>
                                 <FormInput
                                   id="radius"
+                                  value={radius}
                                   onChange={this.handleTextInputChangeradius}
                                   placeholder="Radius"
                                   className="mb-2"
@@ -192,6 +195,7 @@ class StringToHexConvertor extends React.Component {
                                 </label>
                                 <FormInput
                                   id="angle"
+                                  value={angle}
                                   onChange={
                                     this.handleTextInputChangestartangle
                                   }
