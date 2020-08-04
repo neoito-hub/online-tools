@@ -22,10 +22,22 @@ class StringToHexConvertor extends React.Component {
     centery: 0,
     number: 4,
     radius: 50,
-    angle: "",
+    angle: 0,
     vertex: [],
     visibile: "none",
   };
+
+  componentDidMount() {
+    this.setState({
+      vertex: polygon({
+        cx: 0,
+        cy: 0,
+        n: 4,
+        r: 50,
+        a: 0,
+      }),
+    });
+  }
 
   handleTextInputChangex = (e) => {
     this.setState({
@@ -78,14 +90,14 @@ class StringToHexConvertor extends React.Component {
     });
   };
   handleTextInputChangeradius = (e) => {
-    this.setState({
-      radius: e.target.value,
-    });
-    if (e.target.value > 0) {
+    const radius = e.target.value;
+
+    if (radius > 0) {
       this.setState({
+        radius,
         vertex: polygon({
           n: this.state.number,
-          r: e.target.value,
+          r: radius,
           a: this.state.angle,
           cx: this.state.centerx,
           cy: this.state.centery,
@@ -93,6 +105,9 @@ class StringToHexConvertor extends React.Component {
         }),
       });
     } else {
+      this.setState({
+        radius,
+      });
       alert("Radius  must be greater than zero");
     }
   };
@@ -112,6 +127,7 @@ class StringToHexConvertor extends React.Component {
   };
 
   render() {
+    const { centerx, centery, angle, number } = this.state;
     return (
       <Layout>
         <Container fluid className="main-content-container px-4">
@@ -137,6 +153,7 @@ class StringToHexConvertor extends React.Component {
                                 <label htmlFor="x">Center X</label>
                                 <FormInput
                                   id="x"
+                                  value={centerx}
                                   onChange={this.handleTextInputChangex}
                                   placeholder="X-axis"
                                   className="mb-2"
