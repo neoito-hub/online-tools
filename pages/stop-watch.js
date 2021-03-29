@@ -13,25 +13,24 @@ const StopWatch = () => {
   const [displayTime,setDisplayTime] = useState(0);
 
   const startTimer = () => {
-      setTimerOn(true);
-      const time=Date.now();
-      timeNow = setInterval(() => {
-        setDisplayTime(Date.now() - time)
-      },10);
+    setTimerOn(true);
+    const time=Date.now();
+    timeNow = setInterval(() => {
+      setDisplayTime(Date.now() - time)
+    },10);
   }
 
   const resetTimer = () => {
     clearInterval(timeNow);
-    setTimerOn(false);
     setSavedTime(0);
     setDisplayTime(0);
     timeLaps = [];
   }
 
   const stopTimer = () => {
-      clearInterval(timeNow);
-      setTimerOn(false);
-      setSavedTime(savedTime + displayTime); 
+    clearInterval(timeNow);
+    setTimerOn(false);
+    setSavedTime(savedTime + displayTime); 
   }
 
   //Calculate totaltime while stopwatch is running (displayTime + savedTime)
