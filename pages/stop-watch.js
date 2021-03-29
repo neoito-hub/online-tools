@@ -13,13 +13,11 @@ const StopWatch = () => {
   const [displayTime,setDisplayTime] = useState(0);
 
   const startTimer = () => {
-    if(!timerOn){
       setTimerOn(true);
       const time=Date.now();
       timeNow = setInterval(() => {
         setDisplayTime(Date.now() - time)
       },10);
-    }
   }
 
   const resetTimer = () => {
@@ -31,20 +29,14 @@ const StopWatch = () => {
   }
 
   const stopTimer = () => {
-    if(timerOn){
       clearInterval(timeNow);
       setTimerOn(false);
       setSavedTime(savedTime + displayTime); 
-    }
   }
 
-  let totalTime;
-  if(!timerOn){
-    totalTime = savedTime;
-  }
-  else{
-    totalTime = displayTime+savedTime; 
-  }
+  //Calculate totaltime while stopwatch is running (displayTime + savedTime)
+  //calculate totaltime while stopwatch is not runing (savedTime)
+  const totalTime = timerOn ? (displayTime+savedTime) : savedTime;
   
   const diffInHrs = totalTime / 3600000;
   const hh = Math.floor(diffInHrs);
@@ -69,62 +61,60 @@ const StopWatch = () => {
   }
   
 
-    return(
-        <Layout>
-        <Container fluid className="main-content-container px-4">
-          <Row noGutters className="page-header py-4">
-            <PageTitle
-              title="Stop Watch"
-              subtitle="Find out how stop watch is more important"
-              md="12"
-              className="ml-sm-auto mr-sm-auto"
-            />
-          </Row>
+  return(
+      <Layout>
+      <Container fluid className="main-content-container px-4">
+        <Row noGutters className="page-header py-4">
+          <PageTitle
+            title="Stop Watch"
+            subtitle="Find out how stop watch is more important"
+            md="12"
+            className="ml-sm-auto mr-sm-auto"
+          />
+        </Row>
           
-          <div className="stopwatch ">
-            <h1><span className="gold">STOP</span>WATCH </h1>
-            <div className="circle">
-              <span className="time" id="display">{display}</span>
-            </div>
-
-            <div class="control-buttons">
-              { ( timerOn || savedTime === 0 ) ?
-                <button className="lapTimer" onClick={lapTimer}>Lap</button>:
-                <button className="reset" onClick={resetTimer}>Reset</button>
-              }
-              { timerOn ? 
-                <button className="stop" onClick={stopTimer}>Stop</button>:
-                <button className="start" onClick={startTimer}>Start</button>
-              }
-            </div>
-
-            <div className="lap-array">
-              <div className="lap-design">
-                  <div className="lap">
-                    <div className="lap-index">Lap {timeLaps.length+1}</div>
-                    <div className="spacer" />
-                    {displayTime ? display: ''}
-                  </div>
-              </div>
-              {timeLaps.reverse()}
-              {timeLaps.length > 0 && 
-                <div className="lap-design">
-                  {timeLaps.map((timelap,index) => 
-                      <div className="lap">
-                        <div className="lap-index">Lap {timeLaps.length-index}</div>
-                        <div className="spacer" />
-                        {timelap}
-                      </div>
-                  )}
-                </div> 
-              }
-              {timeLaps.reverse()}
-            </div>
+        <div className="stopwatch ">
+          <h1><span className="gold">STOP</span>WATCH </h1>
+          <div className="circle">
+            <span className="time" id="display">{display}</span>
           </div>
-      
-        </Container>
-      </Layout>
-    );
+
+          <div class="control-buttons">
+            { timerOn  ?
+              <button className="lapTimer" onClick={lapTimer}>Lap</button>:
+              <button className="reset" onClick={resetTimer}>Reset</button>
+            }
+            { timerOn ? 
+              <button className="stop" onClick={stopTimer}>Stop</button>:
+              <button className="start" onClick={startTimer}>Start</button>
+            }
+          </div>
+
+          <div className="lap-array">
+            <div className="lap-design">
+                <div className="lap">
+                  <div className="lap-index">Lap {timeLaps.length+1}</div>
+                  <div className="spacer" />
+                  {displayTime ? display: ''}
+                </div>
+            </div>
+            {timeLaps && 
+              <div className="lap-design">
+                {timeLaps.slice(0).reverse().map((timelap,index) => 
+                    <div className="lap">
+                      <div className="lap-index">Lap {timeLaps.length-index}</div>
+                      <div className="spacer" />
+                      {timelap}
+                    </div>
+                )}
+              </div> 
+            }
+          </div>
+        </div>
+    
+      </Container>
+    </Layout>
+  );
 }
 
 
