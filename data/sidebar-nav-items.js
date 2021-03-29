@@ -42,5 +42,11 @@ export default function () {
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: "",
     },
+    {
+      title: "Stop Watch",
+      to: "/stop-watch",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      htmlAfter: "",
+    }
   ];
 }
