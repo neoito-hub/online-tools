@@ -4,10 +4,8 @@ import Layout from "../components/layout/MainLayout";
 import PageTitle from "../components/common/PageTitle";
 import '../static/css/stopwatch.css';
 
-
 let timeNow;
 let timeLaps = [];
-let laps = [];
 
 const StopWatch = () => {
   const [timerOn,setTimerOn] = useState(false);
@@ -18,7 +16,6 @@ const StopWatch = () => {
     if(!timerOn){
       setTimerOn(true);
       const time=Date.now();
-   
       timeNow = setInterval(() => {
         setDisplayTime(Date.now() - time)
       },10);
@@ -122,8 +119,6 @@ const StopWatch = () => {
                 </div> 
               }
               {timeLaps.reverse()}
-              
-              
             </div>
           </div>
       
