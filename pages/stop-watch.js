@@ -57,7 +57,7 @@ const StopWatch = () => {
   const display = `${formattedHH}:${formattedMM}:${formattedSS}:${formattedMS}`;
 
   const lapTimer = () => {
-    timeLaps.push(display);
+    timeLaps.unshift(display);
   }
   
 
@@ -100,7 +100,7 @@ const StopWatch = () => {
             </div>
             {timeLaps && 
               <div className="lap-design">
-                {timeLaps.slice(0).reverse().map((timelap,index) => 
+                {timeLaps.map((timelap,index) => 
                     <div className="lap">
                       <div className="lap-index">Lap {timeLaps.length-index}</div>
                       <div className="spacer" />
