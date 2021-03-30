@@ -8,12 +8,12 @@ let timeNow;
 let timeLaps = [];
 
 const StopWatch = () => {
-  const [timerOn,setTimerOn] = useState(false);
+  const [isTimer,setIsTimer] = useState(false);
   const [savedTime,setSavedTime] = useState(0);
   const [displayTime,setDisplayTime] = useState(0);
 
   const startTimer = () => {
-    setTimerOn(true);
+    setIsTimer(true);
     const time=Date.now();
     timeNow = setInterval(() => {
       setDisplayTime(Date.now() - time)
@@ -29,13 +29,13 @@ const StopWatch = () => {
 
   const stopTimer = () => {
     clearInterval(timeNow);
-    setTimerOn(false);
+    setIsTimer(false);
     setSavedTime(savedTime + displayTime); 
   }
 
   //Calculate totaltime while stopwatch is running (displayTime + savedTime)
   //calculate totaltime while stopwatch is not runing (savedTime)
-  const totalTime = timerOn ? (displayTime+savedTime) : savedTime;
+  const totalTime = isTimer ? (displayTime+savedTime) : savedTime;
   
   const diffInHrs = totalTime / 3600000;
   const hh = Math.floor(diffInHrs);
@@ -59,7 +59,6 @@ const StopWatch = () => {
     timeLaps.unshift(display);
   }
   
-
   return(
       <Layout>
       <Container fluid className="main-content-container px-4">
@@ -78,12 +77,12 @@ const StopWatch = () => {
             <span className="time" id="display">{display}</span>
           </div>
 
-          <div class="control-buttons">
-            { timerOn  ?
+          <div className="control-buttons">
+            { ( isTimer || !savedTime)  ?
               <button className="lapTimer" onClick={lapTimer}>Lap</button>:
               <button className="reset" onClick={resetTimer}>Reset</button>
             }
-            { timerOn ? 
+            { isTimer ? 
               <button className="stop" onClick={stopTimer}>Stop</button>:
               <button className="start" onClick={startTimer}>Start</button>
             }
@@ -94,7 +93,7 @@ const StopWatch = () => {
                 <div className="lap">
                   <div className="lap-index">Lap {timeLaps.length+1}</div>
                   <div className="spacer" />
-                  {displayTime ? display: ''}
+                  {displayTime  ? display: ''}
                 </div>
             </div>
             {timeLaps && 
