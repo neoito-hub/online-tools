@@ -117,11 +117,11 @@ const StopWatch = () => {
           <p>
             A stopwatch is a handheld timepiece designed to measure 
             the amount of time that elapses between its activation 
-            and deactivation.A press on the start button start the 
+            and deactivation.The start button starts the 
             stopwatch from zero or from where we already paused. 
             The lap button is used to record split times or lap 
             times.The stop button just holds the time when we press it.
-            Finally,the reset button reset our time. 
+            Finally,the reset button resets our time. 
           </p>
         </ListGroupItem>                
       </Container>
