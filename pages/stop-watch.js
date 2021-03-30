@@ -78,7 +78,7 @@ const StopWatch = () => {
           </div>
 
           <div className="control-buttons">
-            { ( isTimer || !savedTime)  ?
+            { (isTimer || !savedTime)  ?
               <button className="lapTimer" onClick={lapTimer}>Lap</button>:
               <button className="reset" onClick={resetTimer}>Reset</button>
             }
@@ -93,7 +93,7 @@ const StopWatch = () => {
                 <div className="lap">
                   <div className="lap-index">Lap {timeLaps.length+1}</div>
                   <div className="spacer" />
-                  {displayTime  ? display: ''}
+                  {displayTime ? display: ''}
                 </div>
             </div>
             {timeLaps && 
@@ -109,7 +109,6 @@ const StopWatch = () => {
             }
           </div>
         </div>
-    
       </Container>
     </Layout>
   );
