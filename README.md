@@ -12,6 +12,7 @@ For the design library [Shards Dashboard Lite React
 - [x] Morse Encoder<br>
 - [x] Take a break timer<br>
 - [x] Deep Clean Object<br>
+- [x] Stop Watch<br>
 - [ ] rsa key gen<br>
 - [ ] Jwt converter/ reverse decoder<br>
 - [ ] SHA512 Converter<br>

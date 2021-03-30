@@ -32,6 +32,10 @@ module.exports = withCSS({
         page: "/deep-clean-object",
         query: { title: "Deep Clean Object" },
       },
+      "/stop-watch": {
+        page: "/stop-watch",
+        query: { title: "Stop Watch" },
+      },
     };
   },
 });

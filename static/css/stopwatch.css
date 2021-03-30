@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap');
+  
+  h1 {
+    font-size: 48px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+  
+    text-align: center;
+    line-height: 59px;
+  
+    padding: 0 64px;
+    margin: 0;
+
+    color: #ffffff;
+  }
+  
+  .stopwatch {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 23px;
+    width: 100%;
+    padding-top: 25px;
+
+    background-color: #2c3347;
+    color: #ffffff;
+  }
+  
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    height: 380px;
+    width: 380px;
+  
+    border: 2px solid;
+    border-radius: 50%;
+
+    
+  }
+  
+  .time {
+    font-family: "Roboto Mono", monospace;
+    font-weight: 300;
+    font-size: 48px;
+  }
+  
+  .gold {
+    font-weight: 900;
+  
+    color: #f2c94c;
+    text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
+  }
+  
+  .time-controls {
+    display: flex;
+    justify-content: space-between;
+  
+    width: 187px;
+  }
+  
+  button {
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    border: none;
+    margin: 0;
+    outline: none;
+  }
+
+  button:focus{
+    outline: none;
+  }
+  
+  #playButton {
+    display: block;
+  }
+  
+  #pauseButton {
+    display: none;
+  }
+
+
+  .lap{
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ffe694;
+    padding-top: 1em;
+    height: 3em;
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .lap-index{
+      color:#ffe694;
+  }
+
+  .lap-array{
+      width: 25%;
+      padding-bottom: 3%;
+  }
+
+  .spacer{
+    flex: 1;
+  }
+
+  .control-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 26%;
+  }
+
+  .control-buttons button {
+    cursor: pointer;
+    font-size: 16px;
+  
+    box-shadow: inset 0 0 0 2px #2c3347;
+    width: 80px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 76px;
+    top: 0;
+    left: 0;
+  }
+  
+  .start {
+    background-color: #90EE90;
+    border: 1px solid #90EE90;
+    color: #006400;
+    font-size: bold;
+  }
+
+  .stop{
+    background-color: #351614;
+    border: 1px solid #351614;
+    color: #FF352C;
+  }
+
+  .lapTimer{
+    background-color: #f2c94c;
+    border: 1px solid #f2c94c;
+    color: #d67f39;
+   
+  }
+
+  .reset{
+    background-color: #fff;
+    border: 1px solid #fff;
+    color:#2c3347;
+  }
+  
