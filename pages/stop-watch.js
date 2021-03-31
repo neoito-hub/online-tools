@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import { Container,Row } from "shards-react";
+import { Container,Row,ListGroupItem } from "shards-react";
 import Layout from "../components/layout/MainLayout";
 import PageTitle from "../components/common/PageTitle";
 import '../static/css/stopwatch.css';
@@ -60,7 +60,7 @@ const StopWatch = () => {
   }
   
   return(
-      <Layout>
+    <Layout>
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
           <PageTitle
@@ -72,7 +72,7 @@ const StopWatch = () => {
         </Row>
           
         <div className="stopwatch ">
-          <h1><span className="gold">STOP</span>WATCH </h1>
+          <h1><span className="gold">STOP</span> WATCH</h1>
           <div className="circle">
             <span className="time" id="display">{display}</span>
           </div>
@@ -99,7 +99,7 @@ const StopWatch = () => {
             {timeLaps && 
               <div className="lap-design">
                 {timeLaps.map((timelap,index) => 
-                    <div className="lap">
+                    <div className="lap" key={index}>
                       <div className="lap-index">Lap {timeLaps.length-index}</div>
                       <div className="spacer" />
                       {timelap}
@@ -109,6 +109,21 @@ const StopWatch = () => {
             }
           </div>
         </div>
+        
+        <ListGroupItem className="p-4">
+          <strong className="text-muted d-block mb-2">
+            About Stop Watch
+          </strong>
+          <p>
+            A stopwatch is a handheld timepiece designed to measure 
+            the amount of time that elapses between its activation 
+            and deactivation.The start button starts the 
+            stopwatch from zero or from where we already paused. 
+            The lap button is used to record split times or lap 
+            times.The stop button just holds the time when we press it.
+            Finally,the reset button resets our time. 
+          </p>
+        </ListGroupItem>                
       </Container>
     </Layout>
   );
