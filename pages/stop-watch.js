@@ -128,6 +128,9 @@ const StopWatch = () => {
     </Layout>
   );
 }
+StopWatch.getInitialProps = () => {
+  return {};
+};
 
 
 export default StopWatch;
