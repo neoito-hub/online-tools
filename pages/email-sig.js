@@ -9,17 +9,16 @@ import {
   Form,
   FormInput,
   FormGroup,
-  FormCheckbox,
-  FormSelect,
   Container,
   Button
 } from "shards-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Template1 from "../components/signature-templates/template1";
 import Template2 from "../components/signature-templates/template2";
 import reactCSS from 'reactcss';
 import { SketchPicker } from 'react-color';
 import Template3 from "../components/signature-templates/template3";
+import "../static/css/emailsig.css"
 
 export default function CompleteFormExample (){
   const [formData, setFormData] = useState(
@@ -29,6 +28,8 @@ export default function CompleteFormExample (){
         fePosition: 'Jnr. SWE',
         feCompanyName: 'My Company',
         feInputAddress: '7588 W Gray St',
+        feInputAddress2: '',
+        feInputAddress3: '',
         feFacebook: '',
         feTwitter: '',
         feLinkedIn: '',
@@ -43,6 +44,11 @@ export default function CompleteFormExample (){
         },
     }
   );
+  const [copy, setCopy] = useState({
+      template1: <i class='fas fa-copy' alt='Copy'></i>,
+      template2: <i class='fas fa-copy'></i>,
+      template3: <i class='fas fa-copy'></i>
+  });
   const [colorPicker, setColorPicker] = useState(false);
   const print = ({ target }) => {
     setFormData(prevState => ({
@@ -52,7 +58,6 @@ export default function CompleteFormExample (){
   }
   const imagehandler = (e) =>{
     const reader = new FileReader();
-    console.log(reader);
     reader.onload = () => {
         if(reader.readyState === 2){
             setFormData(prevState => ({
@@ -63,11 +68,9 @@ export default function CompleteFormExample (){
     } 
     reader.read
     reader.readAsDataURL(e.target.files[0]);
-    console.log(formData);
 }
 const handleClick = () => {
     setColorPicker(prevState => (!prevState));
-    console.log(colorPicker);
 }
 const handleClose = () => {
     setColorPicker(prevState => (!prevState));
@@ -76,6 +79,19 @@ const handleChange = (color) => {
     setFormData(prevState => ({
         ...prevState,
         color: color.rgb
+    }))
+}
+function selectCopyNode(id){
+    const element = document.getElementById(id);
+    element.classList.add('body');
+    const range = document.createRange();
+    range.selectNode(element);
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().empty();
+    setCopy((prevState) => ({
+        ...prevState,
+        [id]: "Copied 👍"
     }))
 }
 const styles = reactCSS({
@@ -166,9 +182,19 @@ const styles = reactCSS({
                             </Col>
                             </Row>
                             <FormGroup>
-                            <label htmlFor="feInputAddress">Address</label>
-                            <FormInput id="feInputAddress" placeholder="1234 Main St" 
-                            onChange={data => print(data)}/>
+                                <label htmlFor="feInputAddress">Address Line 1</label>
+                                <FormInput id="feInputAddress" placeholder="1234 Main St" 
+                                    onChange={data => print(data)}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <label htmlFor="feInputAddress2">Address Line 2</label>
+                                <FormInput id="feInputAddress2" placeholder="Calicut" 
+                                    onChange={data => print(data)}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <label htmlFor="feInputAddress3">Address Line 3</label>
+                                <FormInput id="feInputAddress3" placeholder="Kerala" 
+                                    onChange={data => print(data)}/>
                             </FormGroup>
                             <FormGroup>
                             <label htmlFor="feFacebook">Facebook Link</label>
@@ -240,14 +266,15 @@ const styles = reactCSS({
                 <Col>
                     <Row className="mb-4">
                         <Template1 props={formData}/>
+                            <Button style={{height: "30px", marginLeft: "5px", marginTop: "1px"}} onClick={() => selectCopyNode("template1")} data-toggle="tooltip" data-placement="top" title="Copy!" className="copyCursor">{copy.template1}</Button>
                     </Row>
                     <Row className="mb-4">
-                        <Col>
                             <Template2 props={formData}/>
-                        </Col>
+                            <Button style={{height: "30px", marginLeft: "5px", marginTop: "1px"}} onClick={() => selectCopyNode("template2")} data-toggle="tooltip" data-placement="top" title="Copy!" className="copyCursor">{copy.template2}</Button>
                     </Row>
-                    <Row className="mb-4">
+                    <Row style={{width: "100%"}}>
                         <Template3 props={formData}/>
+                        <Button style={{height: "30px", marginLeft: "5px", marginTop: "1px"}} onClick={() => selectCopyNode("template3")} data-toggle="tooltip" data-placement="top" title="Copy!" className="copyCursor">{copy.template3}</Button>
                     </Row>
                 </Col>
             </Row>
