@@ -1,6 +1,0 @@
-.body ::selection {
-    background-color: rgba(11,11,11,0) !important;
-}
-.copyCursor{
-    cursor: copy !important;
-} 
