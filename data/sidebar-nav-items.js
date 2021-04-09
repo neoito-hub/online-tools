@@ -47,12 +47,6 @@ export default function () {
       to: "/stop-watch",
       htmlBefore: '<i class="material-icons">view_module</i>',
       htmlAfter: "",
-    },
-    {
-      title: "Email Signature Generator",
-      to: "/email-sig",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      htmlAfter: "",
     }
   ];
 }
