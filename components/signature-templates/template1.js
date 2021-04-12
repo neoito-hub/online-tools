@@ -3,7 +3,6 @@ import {
   Card,
   CardBody
 } from "shards-react";
-import '../../static/fontawesome/js/all';
 
 
 function Template1({ props }) {
