@@ -45,9 +45,9 @@ export default function CompleteFormExample (){
     }
   );
   const [copy, setCopy] = useState({
-      template1: <i class='fas fa-copy' alt='Copy'></i>,
-      template2: <i class='fas fa-copy'></i>,
-      template3: <i class='fas fa-copy'></i>
+      template1: <i className='material-icons'>content_copy</i>,
+      template2: <i className='material-icons'>content_copy</i>,
+      template3: <i className='material-icons'>content_copy</i>
   });
   const [colorPicker, setColorPicker] = useState(false);
   const print = ({ target }) => {
@@ -86,9 +86,11 @@ function selectCopyNode(id){
     element.classList.add('body');
     const range = document.createRange();
     range.selectNode(element);
+    console.log("hi2")
     window.getSelection().addRange(range);
     document.execCommand('copy');
     window.getSelection().empty();
+        
     setCopy((prevState) => ({
         ...prevState,
         [id]: "Copied 👍"
