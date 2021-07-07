@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[14],{RNiq:function(n,t,e){"use strict";e.r(t);var o=e("q1tI"),u=e.n(o),_=e("ofb8"),i=u.a.createElement;t.default=function(){return i(_.a,null,i("p",null,"Hello Next.js"))}},vlRD:function(n,t,e){(window.__NEXT_P=window.__NEXT_P||[]).push(["/",function(){return e("RNiq")}])}},[["vlRD",0,1,3,4,2,5,6]]]);
