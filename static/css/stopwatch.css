@@ -1,151 +1,228 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap');
-  
-  h1 {
-    font-size: 48px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 200;
-  
-    text-align: center;
-    line-height: 59px;
-  
-    padding: 0 64px;
-    margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap");
 
-    color: #ffffff;
-  }
-  
-  .stopwatch {
-    display: grid;
-    justify-items: center;
-    grid-row-gap: 23px;
-    width: 100%;
-    padding-top: 25px;
+h1 {
+  font-size: 48px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  text-align: center;
+  line-height: 59px;
+  padding: 0 64px;
+  margin: 0;
+  color: #ffffff;
+}
 
-    background-color: #2c3347;
-    color: #ffffff;
-  }
-  
+.stopwatch {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-row-gap: 20px;
+  width: 100%;
+  padding-top: 25px;
+  background-color: #2c3347;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.circle {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 380px;
+  width: 380px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.time {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+  font-size: 48px;
+}
+
+.gold {
+  font-weight: 900;
+  color: #f2c94c;
+  text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
+}
+
+.time-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 187px;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  border: none;
+  margin: 0;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+#playButton {
+  display: block;
+}
+
+#pauseButton {
+  display: none;
+}
+
+.lap {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ffe694;
+  padding-top: 1em;
+  height: 3em;
+  font-family: "Roboto Mono", monospace;
+  margin-bottom: 10px;
+}
+
+.lap-index {
+  color: #ffe694;
+}
+
+.lap-array {
+  width: 25%;
+  padding-bottom: 3%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-buttons button {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 2px #2c3347;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 76px;
+  top: 0;
+}
+
+.start {
+  background-color: #90ee90;
+  border: 1px solid #90ee90;
+  color: #006400;
+}
+
+.pause {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #2c3347;
+}
+
+.lapTimer {
+  background-color: #f2c94c;
+  border: 1px solid #f2c94c;
+  color: #d67f39;
+}
+
+.disabled-lap {
+  background-color: #f7df93;
+  border: 1px #f7df93;
+  color: #d67f39;
+  cursor: not-allowed !important;
+}
+
+.reset {
+  background-color: #351614;
+  border: 1px solid #351614;
+  color: #ff352c;
+}
+
+.disabled-reset {
+  background-color: #6d2d29;
+  border: 1px #6d2d29;
+  color: #d67f39;
+  cursor: not-allowed !important;
+}
+
+@media screen and (max-width: 320px) {
   .circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    height: 380px;
-    width: 380px;
-  
-    border: 2px solid;
-    border-radius: 50%;
-
-    
+    height: 230px;
+    width: 230px;
+    margin-right: 20px;
   }
-  
+
   .time {
-    font-family: "Roboto Mono", monospace;
-    font-weight: 300;
-    font-size: 48px;
-  }
-  
-  .gold {
-    font-weight: 900;
-  
-    color: #f2c94c;
-    text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
-  }
-  
-  .time-controls {
-    display: flex;
-    justify-content: space-between;
-  
-    width: 187px;
-  }
-  
-  button {
-    cursor: pointer;
-    background: transparent;
-    padding: 0;
-    border: none;
-    margin: 0;
-    outline: none;
-  }
-
-  button:focus{
-    outline: none;
-  }
-  
-  #playButton {
-    display: block;
-  }
-  
-  #pauseButton {
-    display: none;
-  }
-
-
-  .lap{
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #ffe694;
-    padding-top: 1em;
-    height: 3em;
-    font-family: "Roboto Mono", monospace;
-  }
-
-  .lap-index{
-      color:#ffe694;
-  }
-
-  .lap-array{
-      width: 25%;
-      padding-bottom: 3%;
-  }
-
-  .spacer{
-    flex: 1;
-  }
-
-  .control-buttons{
-    display: flex;
-    justify-content: space-between;
-    width: 26%;
+    font-size: 30px;
   }
 
   .control-buttons button {
-    cursor: pointer;
-    font-size: 16px;
-  
-    box-shadow: inset 0 0 0 2px #2c3347;
+    width: 75px;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    right: 20px;
+  }
+
+  .lap {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .circle {
+    height: 270px;
+    width: 270px;
+    margin-right: 10px;
+  }
+
+  .time {
+    font-size: 35px;
+  }
+
+  .control-buttons button {
+    width: 78px;
+    height: 78px;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
+  }
+
+  .lap {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .circle {
+    height: 290px;
+    width: 290px;
+    margin-right: 10px;
+  }
+
+  .time {
+    font-size: 37px;
+  }
+
+  .control-buttons button {
     width: 80px;
-    border-radius: 100%;
-    text-align: center;
-    line-height: 76px;
-    top: 0;
-    left: 0;
-  }
-  
-  .start {
-    background-color: #90EE90;
-    border: 1px solid #90EE90;
-    color: #006400;
-    font-size: bold;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
   }
 
-  .stop{
-    background-color: #351614;
-    border: 1px solid #351614;
-    color: #FF352C;
+  .lap {
+    padding-top: 0;
   }
-
-  .lapTimer{
-    background-color: #f2c94c;
-    border: 1px solid #f2c94c;
-    color: #d67f39;
-   
-  }
-
-  .reset{
-    background-color: #fff;
-    border: 1px solid #fff;
-    color:#2c3347;
-  }
-  
+}

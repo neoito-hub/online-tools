@@ -1,54 +1,58 @@
-import React,{ useState } from "react";
-import { Container,Row,ListGroupItem } from "shards-react";
+import "../static/css/stopwatch.css";
+import React, { useState } from "react";
 import Layout from "../components/layout/MainLayout";
 import PageTitle from "../components/common/PageTitle";
-import '../static/css/stopwatch.css';
+import { Container, Row, ListGroupItem } from "shards-react";
 
 let timeNow;
 let timeLaps = [];
 
 const StopWatch = () => {
-  const [isTimer,setIsTimer] = useState(false);
-  const [savedTime,setSavedTime] = useState(0);
-  const [displayTime,setDisplayTime] = useState(0);
+  const [isTimer, setIsTimer] = useState(false);
+  const [savedTime, setSavedTime] = useState(0);
+  const [displayTime, setDisplayTime] = useState(0);
+  const [isReset, setIsReset] = useState(false);
 
   const startTimer = () => {
     setIsTimer(true);
-    const time=Date.now();
+    setIsReset(false);
+    const time = Date.now();
     timeNow = setInterval(() => {
-      setDisplayTime(Date.now() - time)
-    },10);
-  }
+      setDisplayTime(Date.now() - time);
+    }, 10);
+  };
 
   const resetTimer = () => {
+    setIsReset(false);
     clearInterval(timeNow);
     setSavedTime(0);
     setDisplayTime(0);
     timeLaps = [];
-  }
+  };
 
-  const stopTimer = () => {
+  const pauseTimer = () => {
     clearInterval(timeNow);
     setIsTimer(false);
-    setSavedTime(savedTime + displayTime); 
-  }
+    setIsReset(true);
+    setSavedTime(savedTime + displayTime);
+  };
 
   //Calculate totaltime while stopwatch is running (displayTime + savedTime)
   //calculate totaltime while stopwatch is not runing (savedTime)
-  const totalTime = isTimer ? (displayTime+savedTime) : savedTime;
-  
+  const totalTime = isTimer ? displayTime + savedTime : savedTime;
+
   const diffInHrs = totalTime / 3600000;
   const hh = Math.floor(diffInHrs);
-    
+
   const diffInMin = (diffInHrs - hh) * 60;
   const mm = Math.floor(diffInMin);
-    
+
   const diffInSec = (diffInMin - mm) * 60;
   const ss = Math.floor(diffInSec);
-    
+
   const diffInMs = (diffInSec - ss) * 100;
   const ms = Math.floor(diffInMs);
-    
+
   const formattedHH = hh.toString().padStart(2, "0");
   const formattedMM = mm.toString().padStart(2, "0");
   const formattedSS = ss.toString().padStart(2, "0");
@@ -57,9 +61,8 @@ const StopWatch = () => {
 
   const lapTimer = () => {
     timeLaps.unshift(display);
-  }
-  
-  return(
+  };
+  return (
     <Layout>
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
@@ -70,67 +73,79 @@ const StopWatch = () => {
             className="ml-sm-auto mr-sm-auto"
           />
         </Row>
-          
-        <div className="stopwatch ">
-          <h1><span className="gold">STOP</span> WATCH</h1>
+
+        <div className="stopwatch">
+          <h1>
+            <span className="gold">STOP</span> WATCH
+          </h1>
           <div className="circle">
-            <span className="time" id="display">{display}</span>
+            <span className="time" id="display">
+              {display}
+            </span>
           </div>
 
           <div className="control-buttons">
-            { (isTimer || !savedTime)  ?
-              <button className="lapTimer" onClick={lapTimer}>Lap</button>:
-              <button className="reset" onClick={resetTimer}>Reset</button>
-            }
-            { isTimer ? 
-              <button className="stop" onClick={stopTimer}>Stop</button>:
-              <button className="start" onClick={startTimer}>Start</button>
-            }
+            <button
+              className={isTimer ? "pause" : "start"}
+              onClick={isTimer ? pauseTimer : startTimer}
+            >
+              {isTimer ? "Pause" : "Start"}
+            </button>
+            <button
+              className={isTimer ? "lapTimer" : "disabled-lap"}
+              onClick={lapTimer}
+              disabled={!isTimer}
+            >
+              Lap
+            </button>
+            <button
+              className={!isReset ? "disabled-reset" : "reset"}
+              onClick={resetTimer}
+              disabled={!isReset}
+            >
+              Reset
+            </button>
           </div>
 
           <div className="lap-array">
-            <div className="lap-design">
-                <div className="lap">
-                  <div className="lap-index">Lap {timeLaps.length+1}</div>
-                  <div className="spacer" />
-                  {displayTime ? display: ''}
-                </div>
+            <div className="lap">
+              <div className="lap-index">Lap {timeLaps.length + 1}</div>
+              <div className="spacer" />
+              {displayTime ? display : ""}
             </div>
-            {timeLaps && 
-              <div className="lap-design">
-                {timeLaps.map((timelap,index) => 
-                    <div className="lap" key={index}>
-                      <div className="lap-index">Lap {timeLaps.length-index}</div>
-                      <div className="spacer" />
-                      {timelap}
+            {timeLaps && (
+              <>
+                {timeLaps.map((timelap, index) => (
+                  <div className="lap" key={index}>
+                    <div className="lap-index">
+                      Lap {timeLaps.length - index}
                     </div>
-                )}
-              </div> 
-            }
+                    <div className="spacer" />
+                    {timelap}
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
-        
+
         <ListGroupItem className="p-4">
-          <strong className="text-muted d-block mb-2">
-            About Stop Watch
-          </strong>
+          <strong className="text-muted d-block mb-2">About Stop Watch</strong>
           <p>
-            A stopwatch is a handheld timepiece designed to measure 
-            the amount of time that elapses between its activation 
-            and deactivation.The start button starts the 
-            stopwatch from zero or from where we already paused. 
-            The lap button is used to record split times or lap 
+            A stopwatch is a handheld timepiece designed to measure the amount
+            of time that elapses between its activation and deactivation.The
+            start button starts the stopwatch from zero or from where we already
+            paused. The lap button is used to record split times or lap
             times.The stop button just holds the time when we press it.
-            Finally,the reset button resets our time. 
+            Finally,the reset button resets our time.
           </p>
-        </ListGroupItem>                
+        </ListGroupItem>
       </Container>
     </Layout>
   );
-}
+};
 StopWatch.getInitialProps = () => {
   return {};
 };
-
 
 export default StopWatch;
