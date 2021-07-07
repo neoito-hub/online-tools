@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 
+import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
-import hljs from "highlight.js/lib/highlight"; // import hljs library
 import "highlight.js/styles/atom-one-dark.css";
 hljs.registerLanguage("javascript", javascript);
 
